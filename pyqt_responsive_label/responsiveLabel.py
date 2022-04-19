@@ -16,6 +16,19 @@ class ResponsiveLabel(QLabel):
     def __initUi(self):
         self.setAlignment(Qt.AlignCenter)
 
+    def __setAccurateFont(self):
+        font = self.font()
+        font.setPointSize(font.pointSize() - 1)
+        self.setFont(font)
+
+    def __setAccurateFontWidth(self):
+        while self.width() / self.fontMetrics().boundingRect(self.text()).width() <= 1.0:
+            self.__setAccurateFont()
+
+    def __setAccurateFontHeight(self):
+        while self.height() / self.fontMetrics().boundingRect(self.text()).height() <= 0.7:
+            self.__setAccurateFont()
+
     def __setFontSizeAccordanceWithWindow(self):
         dpr = self.devicePixelRatio()
 
@@ -26,16 +39,10 @@ class ResponsiveLabel(QLabel):
         # self.setFont(QFont('Arial', min(200 // dpr, max(10, math.floor(self.widthMM() // dpr * self.width() / self.fontMetrics().boundingRect(self.text()).width())))))
 
         # Set the label font size smaller than affordable width
-        while self.width() / self.fontMetrics().boundingRect(self.text()).width() <= 1.0:
-            font = self.font()
-            font.setPointSize(font.pointSize()-1)
-            self.setFont(font)
+        self.__setAccurateFontWidth()
 
         # Set the label font size smaller than affordable height
-        while self.height() / self.fontMetrics().boundingRect(self.text()).height() <= 0.7:
-            font = self.font()
-            font.setPointSize(font.pointSize()-1)
-            self.setFont(font)
+        self.__setAccurateFontHeight()
 
     def eventFilter(self, obj, e):
         if isinstance(obj, type(self.__parent)):
