@@ -14,24 +14,23 @@ class ResponsiveLabel(QLabel):
         self.__initUi()
 
     def __initUi(self):
-        self.setAlignment(Qt.AlignCenter)
+        self.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
 
     def __setApproximateFontSize(self):
         dpr = self.devicePixelRatio()
         self.setFont(QFont('Arial', min(200 // dpr, max(10, self.widthMM() // dpr))))
 
-    def __setAccurateFontSize(self):
-        font = self.font()
-        font.setPointSize(font.pointSize() - 1)
-        self.setFont(font)
-
     def __setAccurateFontWidth(self):
         while self.width() / self.fontMetrics().boundingRect(self.text()).width() <= 1.0:
-            self.__setAccurateFontSize()
+            font = self.font()
+            font.setPointSize(font.pointSize() - 1)
+            self.setFont(font)
 
     def __setAccurateFontHeight(self):
-        while self.height() / self.fontMetrics().boundingRect(self.text()).height() <= 0.7:
-            self.__setAccurateFontSize()
+        font_size = min(self.height(), self.fontMetrics().boundingRect(self.text()).height())
+        font = self.font()
+        font.setPointSize(font_size)
+        self.setFont(font)
 
     def __setFontSizeAccordanceWithWindow(self):
         # Set the label font size accordance with windows size "approximately"
