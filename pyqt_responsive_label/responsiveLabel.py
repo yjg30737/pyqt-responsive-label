@@ -48,9 +48,11 @@ class ResponsiveLabel(QLabel):
         self.__setAccurateFontHeight()
 
     def eventFilter(self, obj, e):
+        # accept window's resize event
         if isinstance(obj, type(self.__parent)):
             if e.type() == 14:
                 self.__setFontSizeAccordanceWithWindow()
+        # accept text changing event
         elif isinstance(obj, ResponsiveLabel):
             if e.type() == 12:
                 self.__setFontSizeAccordanceWithWindow()
