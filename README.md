@@ -7,6 +7,9 @@ PyQt QLabel which can resize the font responsively accordance with window's size
 ## Setup
 `pip3 install git+https://github.com/yjg30737/pyqt-responsive-label.git --upgrade`
 
+## Method Overview
+* `setAcceptTextChange(f: bool)` - Choose the option that this should accept text change(`paintEvent`) or not.
+
 ## Example
 ```python
 from PyQt5.QtWidgets import QApplication, QVBoxLayout, QWidget
