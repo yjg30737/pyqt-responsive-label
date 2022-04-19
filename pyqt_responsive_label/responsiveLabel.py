@@ -18,15 +18,20 @@ class ResponsiveLabel(QLabel):
 
     def __setFontSizeAccordanceWithWindow(self):
         dpr = self.devicePixelRatio()
+
+        # Set the label font size accordance with windows size "approximately"
         self.setFont(QFont('Arial', min(200 // dpr, max(10, self.widthMM() // dpr))))
+
         # todo generalize, not brute force (if possible)
         # self.setFont(QFont('Arial', min(200 // dpr, max(10, math.floor(self.widthMM() // dpr * self.width() / self.fontMetrics().boundingRect(self.text()).width())))))
 
+        # Set the label font size smaller than affordable width
         while self.width() / self.fontMetrics().boundingRect(self.text()).width() <= 1.0:
             font = self.font()
             font.setPointSize(font.pointSize()-1)
             self.setFont(font)
 
+        # Set the label font size smaller than affordable height
         while self.height() / self.fontMetrics().boundingRect(self.text()).height() <= 0.7:
             font = self.font()
             font.setPointSize(font.pointSize()-1)
