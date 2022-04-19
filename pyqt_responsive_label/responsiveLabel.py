@@ -9,7 +9,8 @@ class ResponsiveLabel(QLabel):
     def __init__(self, parent=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.__parent = parent
-        self.__parent.installEventFilter(self)
+        if self.__parent:
+            self.__parent.installEventFilter(self)
         self.installEventFilter(self)
         self.__initUi()
 
