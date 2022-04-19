@@ -46,5 +46,7 @@ Like below, label font size is changing accordance with window's size.
 
 ![image](https://user-images.githubusercontent.com/55078043/163919028-c718a549-71bf-4581-8f28-19c6a36719fc.png)
 
+## See Also
+* <a href="https://github.com/yjg30737/pyqt-timer-label.git">pyqt-timer-label</a>
 
 
