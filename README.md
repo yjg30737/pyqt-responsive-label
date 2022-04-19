@@ -40,6 +40,8 @@ if __name__ == "__main__":
 
 Result
 
+Like below, label font size is changing accordance with window's size.
+
 ![image](https://user-images.githubusercontent.com/55078043/163919017-31d6ae6b-329a-414e-ad37-a09dee778faf.png)
 
 ![image](https://user-images.githubusercontent.com/55078043/163919028-c718a549-71bf-4581-8f28-19c6a36719fc.png)
