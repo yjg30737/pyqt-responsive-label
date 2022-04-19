@@ -27,7 +27,7 @@ class ResponsiveLabel(QLabel):
             self.setFont(font)
 
     def __setAccurateFontHeight(self):
-        font_size = min(self.height(), self.fontMetrics().boundingRect(self.text()).height())
+        font_size = min(self.height(), self.fontMetrics().boundingRect(self.text()).height()) // 2
         font = self.font()
         font.setPointSize(font_size)
         self.setFont(font)
