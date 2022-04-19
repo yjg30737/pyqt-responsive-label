@@ -9,9 +9,13 @@ class ResponsiveLabel(QLabel):
         self.__parent = parent
         if self.__parent:
             self.__parent.installEventFilter(self)
-
         self.installEventFilter(self)
+
+        self.__initVal()
         self.__initUi()
+
+    def __initVal(self):
+        self.__text_change_flag = False
 
     def __initUi(self):
         self.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
@@ -46,13 +50,17 @@ class ResponsiveLabel(QLabel):
         # Set the label font size smaller than affordable height
         self.__setAccurateFontHeight()
 
+    def setAcceptTextChange(self, f: bool):
+        self.__text_change_flag = f
+
     def eventFilter(self, obj, e):
         # accept window's resize event
         if isinstance(obj, type(self.__parent)):
             if e.type() == 14:
                 self.__setFontSizeAccordanceWithWindow()
         # accept text changing event
-        elif isinstance(obj, ResponsiveLabel):
-            if e.type() == 12:
-                self.__setFontSizeAccordanceWithWindow()
+        if self.__text_change_flag:
+            if isinstance(obj, ResponsiveLabel):
+                if e.type() == 12:
+                    self.__setFontSizeAccordanceWithWindow()
         return super().eventFilter(obj, e)
