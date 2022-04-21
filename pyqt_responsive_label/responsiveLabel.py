@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QLabel, QSizePolicy
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
 
@@ -19,6 +19,7 @@ class ResponsiveLabel(QLabel):
 
     def __initUi(self):
         self.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
+        self.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
 
     def __setApproximateFontSize(self):
         dpr = self.devicePixelRatio()
