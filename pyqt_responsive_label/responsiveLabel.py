@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QLabel, QSizePolicy, qApp
+from PyQt5.QtWidgets import QLabel, QSizePolicy, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
 
@@ -23,8 +23,8 @@ class ResponsiveLabel(QLabel):
         self.setMinimumSize(self.sizeHint())
 
     def __setApproximateFontSize(self):
-        dpr = qApp.screens()[0].logicalDotsPerInch() / 96.0
-        self.setFont(QFont('Arial', max(12, min(self.widthMM()-2, self.height()-2) // dpr)))
+        dpr = QApplication.screens()[0].logicalDotsPerInch() / 96.0
+        self.setFont(QFont('Arial', max(12, min(self.widthMM()//2, self.height()-2) // dpr)))
 
     def __setFontSizeAccordanceWithWindow(self):
         # Set the label font size accordance with windows size "approximately"
